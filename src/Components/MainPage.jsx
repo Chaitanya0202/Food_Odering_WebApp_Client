@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import burger from '../Components/burger.jpeg'
-import Button from '@mui/material/Button'
+import { Button } from '@mui/material'
+
 import Navbaar from './Navbaar'
 import axios from 'axios'
 export default class MainPage extends Component {
