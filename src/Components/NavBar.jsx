@@ -20,7 +20,7 @@ export default function Navbar() {
           >
             <span className="navbar-toggler-icon"></span>
           </button>
-          <Link className="btn btn-outline-light disabledCursor" to={"/addUser"} >
+          <Link className="btn btn-outline-light disabledCursor disabled" to={"/addUser"} >
             Add User
           </Link>
         </div>
