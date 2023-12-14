@@ -13,6 +13,7 @@ export default function AddUser() {
   });
 
   const { name, email, password, phone } = user;
+  const BASE_URL="https://foododeringwebappserver-production.up.railway.app/"
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
@@ -21,7 +22,7 @@ export default function AddUser() {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    await axios.post("http://localhost:8080/saveUser", user);
+    await axios.post(`${BASE_URL}saveUser`, user);
     navigate("/");
   };
   return (

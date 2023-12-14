@@ -10,12 +10,13 @@ export default function ViewUser() {
     phone: "",
   });
   const { id } = useParams();
+  const BASE_URL="https://foododeringwebappserver-production.up.railway.app/"
 
   useEffect(() => {
     loadUser();
   }, []);
   const loadUser = async () => {
-    const result = await axios.get(`http://localhost:8080/getUserById/${id}`);
+    const result = await axios.get(`${BASE_URL}getUserById/${id}`);
     setUser(result.data);
   };
 

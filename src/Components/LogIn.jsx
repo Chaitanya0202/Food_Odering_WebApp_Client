@@ -11,6 +11,8 @@ function LogIn() {
   });
   const { email, password } = logInfo;
 
+  const BASE_URL="https://foododeringwebappserver-production.up.railway.app/"
+
   const onInputChange = (e) => {
     setLogInfo({ ...logInfo, [e.target.name]: e.target.value });
     // console.log(email);
@@ -21,7 +23,7 @@ function LogIn() {
     e.preventDefault();
     
     try {
-      const result = await axios.get(`http://localhost:8080/getUserByEmail/${email}`);
+      const result = await axios.get(`${BASE_URL}getUserByEmail/${email}`);
     
     
     if(result.data.password===password){

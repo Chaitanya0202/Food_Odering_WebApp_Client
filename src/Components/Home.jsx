@@ -6,13 +6,14 @@ function Home() {
   useEffect(() => {
     loadUser();
   }, []);
+  const BASE_URL="https://foododeringwebappserver-production.up.railway.app/"
   const loadUser = async () => {
-    const result = await axios.get("http://localhost:8080/getAllUser");
+    const result = await axios.get(`${BASE_URL}getAllUser`);
     setUsers(result.data);
     console.log(result);
   };
   const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:8080/deleteUserById/${id}`);
+    await axios.delete(`${BASE_URL}deleteUserById/${id}`);
     loadUser();
   };
 
