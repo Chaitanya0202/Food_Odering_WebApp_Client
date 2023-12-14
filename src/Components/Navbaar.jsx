@@ -15,7 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCartIcon";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
