@@ -14,12 +14,15 @@ import MenuItem from "@mui/material/MenuItem";
 
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
+import { Link } from "react-router-dom";
+import { useGlobelContext } from "../Components/Context/ProductContext";
+
 
 
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
-const cart = ["No Any Product"];
+// const cart = ["No Any Product"];
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -30,7 +33,10 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-function Navbaar({ count }) {
+const Navbaar=()=> {
+
+  const{count,cart}=useGlobelContext();
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -48,6 +54,7 @@ function Navbaar({ count }) {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
 
   return (
     <AppBar position="sticky">
@@ -122,7 +129,7 @@ function Navbaar({ count }) {
               textDecoration: "none",
             }}
           >
-            LOGO
+            QuickBite
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -137,9 +144,9 @@ function Navbaar({ count }) {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton aria-label="cart"  onClick={handleOpenUserMenu} >
-              <StyledBadge badgeContent={count} color="secondary">
-              <i className="material-icons">shopping_cart</i>
+            <IconButton aria-label="cart" >
+              <StyledBadge badgeContent={cart.length} color="secondary">
+              <Link className="material-icons text-black" to={"/showCart"}>shopping_cart</Link>
               </StyledBadge>
             </IconButton>
             <Tooltip title="Open settings">
@@ -151,6 +158,7 @@ function Navbaar({ count }) {
                 />
               </IconButton>
             </Tooltip>
+            
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"
@@ -167,16 +175,21 @@ function Navbaar({ count }) {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
+            
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
             </Menu>
+            
           </Box>
+          
         </Toolbar>
+        
       </Container>
     </AppBar>
+    
   );
 }
 export default Navbaar;

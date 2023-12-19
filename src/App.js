@@ -13,6 +13,11 @@ import MainPage from './Components/MainPage';
 import Navbaar from './Components/Navbaar';
 import Footer from './Components/Footer';
 
+import CartPage from './Components/CartPage.jsx';
+import { AppProvider } from './Components/Context/ProductContext.jsx';
+
+import ShowCart from './Components/ShowCart.jsx';
+
 
 function App() {
   return (
@@ -20,10 +25,11 @@ function App() {
       
     
     
+    <AppProvider>
     
     <Router>
     <Navbar/>
-    
+    <Navbaar/>
     <Routes>
     <Route exact path="/" element={<Wellcome/>} />
     <Route exact path='/home' element={<Home/>}/>
@@ -34,6 +40,8 @@ function App() {
     <Route exact path="/signup" element={<SignUp/>} />
     <Route exact path="/mainPage" element={<MainPage/>} />
     
+    <Route exact path="/cartPage" element={<CartPage/>} />
+    <Route exact path="/showCart" element={<ShowCart/>} />
     
     
     
@@ -41,7 +49,8 @@ function App() {
     
     </Routes>
     <Footer/>
-      </Router>
+    </Router>
+    </AppProvider>
 {/*
 
        */}
