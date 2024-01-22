@@ -13,26 +13,26 @@ export default function SignUp() {
   });
 
   const { name, email, password, phone } = user;
-  const BASE_URL="https://foododeringwebappserver-production.up.railway.app/"
 
   const onInputChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
-    // const result = await axios.get(`http://localhost:8080/getUserById/${id}`);
+    
   };
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    await axios.post(`${BASE_URL}saveUser`, user);
+    console.log(user)
+    await axios.post(`http://localhost:8080/saveUser`,user);
     navigate("/logIn");
   };
 
 
   
   return (
-    <div className="container">
+    <div className="container mt-5">
       <div className="row">
         <div className="col-md-6 offset-md-3 border rounded p-4 mt2 shadow">
-          <h3 className="tex-center text-bold">Sign Up</h3>
+          <h3 className="tex-center text-bold ">Sign Up Page</h3>
           <form
             onSubmit={(e) => onSubmitHandler(e)}
             className="g-3  needs-validation"

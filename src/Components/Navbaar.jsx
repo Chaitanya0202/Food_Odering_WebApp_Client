@@ -15,14 +15,10 @@ import MenuItem from "@mui/material/MenuItem";
 import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import { Link } from "react-router-dom";
-import { useGlobelContext } from "../Components/Context/ProductContext";
+import { useGlobelContext } from "../Context/ProductContext";
 
-
-
-
-const pages = ["Products", "Pricing", "Blog"];
+const pages = ["Products", "Pricing", "Offers"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
-// const cart = ["No Any Product"];
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -33,9 +29,8 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
   },
 }));
 
-const Navbaar=()=> {
-
-  const{count,cart}=useGlobelContext();
+const Navbaar = () => {
+  const { count, cart } = useGlobelContext();
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -54,7 +49,6 @@ const Navbaar=()=> {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
 
   return (
     <AppBar position="sticky">
@@ -75,7 +69,9 @@ const Navbaar=()=> {
               textDecoration: "none",
             }}
           >
-            QuickBite
+            <Link className="text-decoration-none text-white" to={"/"}>
+              QuickBite
+            </Link>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -107,7 +103,12 @@ const Navbaar=()=> {
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Link
+                    className="text-decoration-none text-black"
+                    to={page === "Products" ? "/showCart" : `/${page.toLowerCase()}`}
+                  >
+                    {page}
+                  </Link>
                 </MenuItem>
               ))}
             </Menu>
@@ -129,7 +130,9 @@ const Navbaar=()=> {
               textDecoration: "none",
             }}
           >
-            QuickBite
+            <Link className="text-decoration-none text-white" to={"/"}>
+              QuickBite
+            </Link>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {pages.map((page) => (
@@ -138,15 +141,22 @@ const Navbaar=()=> {
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page}
+                <Link
+                  className="text-decoration-none text-white"
+                  to={page === "Products" ? "/cartPage" : `/${page.toLowerCase()}`}
+                >
+                  {page}
+                </Link>
               </Button>
             ))}
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
-            <IconButton aria-label="cart" >
+            <IconButton aria-label="cart">
               <StyledBadge badgeContent={cart.length} color="secondary">
-              <Link className="material-icons text-black" to={"/showCart"}>shopping_cart</Link>
+                <Link className="material-icons text-black" to={"/showCart"}>
+                  shopping_cart
+                </Link>
               </StyledBadge>
             </IconButton>
             <Tooltip title="Open settings">
@@ -158,7 +168,7 @@ const Navbaar=()=> {
                 />
               </IconButton>
             </Tooltip>
-            
+
             <Menu
               sx={{ mt: "45px" }}
               id="menu-appbar"
@@ -175,21 +185,17 @@ const Navbaar=()=> {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-            
               {settings.map((setting) => (
                 <MenuItem key={setting} onClick={handleCloseUserMenu}>
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))}
             </Menu>
-            
           </Box>
-          
         </Toolbar>
-        
       </Container>
     </AppBar>
-    
   );
-}
+};
+
 export default Navbaar;

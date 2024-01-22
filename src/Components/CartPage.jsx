@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useGlobelContext } from "../Components/Context/ProductContext";
+import { useGlobelContext } from "../Context/ProductContext";
 
 function CartPage() {
   

@@ -11,8 +11,6 @@ function LogIn() {
   });
   const { email, password } = logInfo;
 
-  const BASE_URL="https://foododeringwebappserver-production.up.railway.app/"
-
   const onInputChange = (e) => {
     setLogInfo({ ...logInfo, [e.target.name]: e.target.value });
     // console.log(email);
@@ -23,14 +21,14 @@ function LogIn() {
     e.preventDefault();
     
     try {
-      const result = await axios.get(`${BASE_URL}getUserByEmail/${email}`);
+      const result = await axios.get(`http://localhost:8080/getUserByEmail/${email}`);
     
     
     if(result.data.password===password){
         
         console.log("lOG IN sUCCESS")
         
-        navigate("/mainPage")
+        navigate("/cartPage")
     }
     else{
       alert("Invalid Email")
@@ -39,16 +37,13 @@ function LogIn() {
       console.log(error)
       alert("Enter Valid Creadintial..!")
     }
-    
-
-
   }
 
   return (
     <>
-      <div>LogIn Page</div>
-
-      <div className="container">
+    
+    <div className="container mt-5">
+    <h3 className="tex-center text-bold ">lOG iN Page</h3>
       <form  onSubmit={(e)=>onSubmitHandler(e)}>
         <div className="row">
           <div className="col-md-6 offset-md-3 border rounded p-4 mt2 shadow">

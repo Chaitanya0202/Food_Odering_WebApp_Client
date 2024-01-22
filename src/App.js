@@ -14,7 +14,7 @@ import Navbaar from './Components/Navbaar';
 import Footer from './Components/Footer';
 
 import CartPage from './Components/CartPage.jsx';
-import { AppProvider } from './Components/Context/ProductContext.jsx';
+import { AppProvider } from './Context/ProductContext.jsx';
 
 import ShowCart from './Components/ShowCart.jsx';
 
@@ -28,7 +28,7 @@ function App() {
     <AppProvider>
     
     <Router>
-    <Navbar/>
+    
     <Navbaar/>
     <Routes>
     <Route exact path="/" element={<Wellcome/>} />
@@ -42,6 +42,7 @@ function App() {
     
     <Route exact path="/cartPage" element={<CartPage/>} />
     <Route exact path="/showCart" element={<ShowCart/>} />
+    
     
     
     
